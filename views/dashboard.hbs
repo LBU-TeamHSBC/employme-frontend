@@ -1,0 +1,423 @@
+{{!-- TEMPLATE FROM: https://github.com/modularcode/modular-admin-html --}}
+<!DOCTYPE html>
+<html class="no-js" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Dashboard</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="stylesheet" href="/css/vendor.css">
+        <!-- Theme initialization -->
+        <script>
+            var themeSettings = (localStorage.getItem('themeSettings')) ?
+                JSON.parse(localStorage.getItem('themeSettings')) : {};
+            var themeName = themeSettings.themeName || '';
+            if (themeName) {
+                document.write('<link rel="stylesheet" id="theme-style" href="/css/app-' + themeName + '.css">');
+            } else {
+                document.write('<link rel="stylesheet" id="theme-style" href="/css/app.css">');
+            }
+        </script>
+        <link rel="stylesheet" id="theme-style" href="/css/app.css">
+    <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
+    <body class="loaded">
+        <div class="main-wrapper">
+            <div class="app" id="app">
+                <header class="header">
+                    <div class="header-block header-block-collapse d-lg-none d-xl-none">
+                        <button class="collapse-btn" id="sidebar-collapse-btn">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="header-block header-block-search">
+                        <form role="search">
+                            <div class="input-container">
+                                <i class="fa fa-search"></i>
+                                <input placeholder="Search" type="search">
+                                <div class="underline"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="header-block header-block-nav">
+                        <ul class="nav-profile">
+                            <li class="notifications new">
+                                <a href="" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-bell-o"></i>
+                                    <sup>
+                                        <span class="counter">{{ notifications_count }}</span>
+                                    </sup>
+                                </a>
+                                <div class="dropdown-menu notifications-dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 26px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <ul class="notifications-container">
+                                        {{#each notifications as |note|}}
+                                            {{!-- TODO: NOTIFICATIONS --}}
+                                        {{/each}}
+                                    </ul>
+                                    <footer>
+                                        <ul>
+                                            <li>
+                                                <a href=""> View All </a>
+                                            </li>
+                                        </ul>
+                                    </footer>
+                                </div>
+                            </li>
+                            <li class="profile dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&amp;s=40')"> </div>
+                                    <span class="name"> John Doe </span>
+                                </a>
+                                <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-user icon"></i> Profile </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-bell icon"></i> Notifications </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-gear icon"></i> Settings </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/">
+                                        <i class="fa fa-power-off icon"></i> Logout </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <aside class="sidebar">
+                    <div class="sidebar-container">
+                        <div class="sidebar-header">
+                            <div class="brand">
+                                <div class="logo">
+                                    <span class="l l1"></span>
+                                    <span class="l l2"></span>
+                                    <span class="l l3"></span>
+                                    <span class="l l4"></span>
+                                    <span class="l l5"></span>
+                                </div> EmployME </div>
+                        </div>
+                        <nav class="menu">
+                            <ul class="sidebar-menu metismenu" id="sidebar-menu">
+                                <li class="active">
+                                    <a href="index.html">
+                                        <i class="fa fa-home"></i> Dashboard </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <footer class="sidebar-footer">
+                        <ul class="sidebar-menu metismenu" id="customize-menu">
+                        </ul>
+                    </footer>
+                </aside>
+                <div class="sidebar-overlay" id="sidebar-overlay"></div>
+                <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
+                <div class="mobile-menu-handle"></div>
+                <article class="content dashboard-page">
+                    <section class="section">
+                        <div class="row sameheight-container">
+                            <div class="col col-12 col-sm-12 col-md-6 col-xl-5 stats-col">
+                                <div class="card sameheight-item stats" data-exclude="xs" style="height: 313px;">
+                                    <div class="card-block">
+                                        <div class="title-block">
+                                            <h4 class="title"> Overview </h4>
+                                            <p class="title-description">
+                                            Overview of your current progress
+                                            </p>
+                                        </div>
+                                        <div class="row row-sm stats-container">
+                                            <div class="col-12 col-sm-6 stat-col">
+                                                <div class="stat-icon">
+                                                    <i class="fa fa-rocket"></i>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="value"> 5407 </div>
+                                                    <div class="name"> Score </div>
+                                                </div>
+                                                <div class="progress stat-progress">
+                                                    <div class="progress-bar" style="width: 75%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 stat-col">
+                                                <div class="stat-icon">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="value"> 7 </div>
+                                                    <div class="name"> Matched Companies </div>
+                                                </div>
+                                                <div class="progress stat-progress">
+                                                    <div class="progress-bar" style="width: 25%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6  stat-col">
+                                                <div class="stat-icon">
+                                                    <i class="fa fa-line-chart"></i>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="value"> 14 </div>
+                                                    <div class="name"> Completed Courses </div>
+                                                </div>
+                                                <div class="progress stat-progress">
+                                                    <div class="progress-bar" style="width: 60%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6  stat-col">
+                                                <div class="stat-icon">
+                                                    <i class="fa fa-users"></i>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="value"> 3 </div>
+                                                    <div class="name"> In Progress Courses </div>
+                                                </div>
+                                                <div class="progress stat-progress">
+                                                    <div class="progress-bar" style="width: 34%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6  stat-col">
+                                                <div class="stat-icon">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="value"> 2 </div>
+                                                    <div class="name"> Job Offers </div>
+                                                </div>
+                                                <div class="progress stat-progress">
+                                                    <div class="progress-bar" style="width: 49%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 stat-col">
+                                                <div class="stat-icon">
+                                                    <i class="fa fa-dollar"></i>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="value"> 18 </div>
+                                                    <div class="name"> Jobs Applied </div>
+                                                </div>
+                                                <div class="progress stat-progress">
+                                                    <div class="progress-bar" style="width: 15%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-12 col-sm-12 col-md-6 col-xl-7 history-col">
+                                <div class="card sameheight-item" data-exclude="xs" id="dashboard-history" style="height: 313px;">
+                                    <div class="card-header card-header-sm bordered">
+                                        <div class="header-block">
+                                            <h3 class="title">Score</h3>
+                                        </div>
+                                        <ul class="nav nav-tabs pull-right" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#visits" role="tab" data-toggle="tab">Score</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#downloads" role="tab" data-toggle="tab">Skills</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active fade show" id="visits">
+                                                <p class="title-description"> Your Score over 30 Days </p>
+                                                <div id="dashboard-visits-chart" style="position: relative;"><svg height="220" version="1.1" width="608" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.083313px; top: -0.600006px;"><desc>Created with Raphaël 2.2.0</desc><defs></defs><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="26.833333015441895" y="182.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">40</tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M39.333333015441895,182.5H583" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="26.833333015441895" y="143.125" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="143.125"></tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M39.333333015441895,143.125H583" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="26.833333015441895" y="103.75" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">63</tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M39.333333015441895,103.75H583" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="26.833333015441895" y="64.375" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="64.375"></tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M39.333333015441895,64.375H583" stroke-width="0.5"></path><text style="text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="26.833333015441895" y="25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal"><tspan dy="4">86</tspan></text><path style="" fill="none" stroke="#aaaaaa" d="M39.333333015441895,25H583" stroke-width="0.5"></path><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="492.388888835907" y="195" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,6.25)"><tspan dy="4">2015-09-06</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="401.77777767181396" y="195" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,6.25)"><tspan dy="4">2015-09-05</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="311.16666650772095" y="195" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,6.25)"><tspan dy="4">2015-09-04</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="220.55555534362793" y="195" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,6.25)"><tspan dy="4">2015-09-03</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="129.9444441795349" y="195" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,6.25)"><tspan dy="4">2015-09-02</tspan></text><text style="text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" x="39.333333015441895" y="195" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" font-weight="normal" transform="matrix(1,0,0,1,0,6.25)"><tspan dy="4">2015-09-01</tspan></text><path style="" fill="none" stroke="#9ed85f" d="M39.333333015441895,79.78260869565217C61.98611080646515,75.50271739130434,107.29166638851166,54.103260869565226,129.9444441795349,62.663043478260875C152.59722197055817,71.22282608695653,197.90277755260468,148.26086956521738,220.55555534362793,148.26086956521738C243.20833313465118,148.26086956521738,288.5138887166977,62.663043478260875,311.16666650772095,62.663043478260875C333.8194442987442,62.663043478260875,379.1249998807907,148.26086956521738,401.77777767181396,148.26086956521738C424.4305554628372,148.26086956521738,469.7361110448837,78.07065217391305,492.388888835907,62.663043478260875C515.0416666269302,47.2554347826087,560.3472222089767,34.41576086956522,583,25" stroke-width="3"></path><circle cx="39.333333015441895" cy="79.78260869565217" r="4" fill="#85ce36" stroke="#ffffff" style="" stroke-width="1"></circle><circle cx="129.9444441795349" cy="62.663043478260875" r="4" fill="#85ce36" stroke="#ffffff" style="" stroke-width="1"></circle><circle cx="220.55555534362793" cy="148.26086956521738" r="4" fill="#85ce36" stroke="#ffffff" style="" stroke-width="1"></circle><circle cx="311.16666650772095" cy="62.663043478260875" r="4" fill="#85ce36" stroke="#ffffff" style="" stroke-width="1"></circle><circle cx="401.77777767181396" cy="148.26086956521738" r="4" fill="#85ce36" stroke="#ffffff" style="" stroke-width="1"></circle><circle cx="492.388888835907" cy="62.663043478260875" r="4" fill="#85ce36" stroke="#ffffff" style="" stroke-width="1"></circle><circle cx="583" cy="25" r="4" fill="#85ce36" stroke="#ffffff" style="" stroke-width="1"></circle></svg><div class="morris-hover morris-default-style" style="left: 0.833333px; top: 10px; display: none;"><div class="morris-hover-row-label">2015-09-01</div><div class="morris-hover-point" style="color: rgb(158, 216, 95)">Visits:  70</div></div></div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="downloads">
+                                                <p class="title-description"> Your Skills </p>
+                                                <div id="dashboard-downloads-chart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section">
+                        <div class="row sameheight-container">
+                            <div class="col-xl-8">
+                                <div class="card sameheight-item items" data-exclude="xs,sm,lg" style="height: 400px;">
+                                    <div class="card-header bordered">
+                                        <div class="header-block">
+                                            <h3 class="title"> Enrolled Courses </h3>
+                                        </div>
+                                        <div class="header-block pull-right">
+                                            <a href="item-editor.html" class="btn btn-primary btn-sm"> Add new </a>
+                                            {{!-- <label class="search">
+                                                <input class="search-input" placeholder="search...">
+                                                <i class="fa fa-search search-icon"></i>
+                                            </label>
+                                            <div class="pagination">
+                                                <a href="" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </a>
+                                                <a href="" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                            </div> --}}
+                                        </div>
+                                    </div>
+                                    <ul class="item-list striped">
+                                        <li class="item item-list-header">
+                                            <div class="item-row">
+                                                <div class="item-col item-col-header fixed item-col-img xs"></div>
+                                                <div class="item-col item-col-header item-col-title">
+                                                    <div>
+                                                        <span>Name</span>
+                                                    </div>
+                                                </div>
+                                                <div class="item-col item-col-header item-col-sales">
+                                                    <div>
+                                                        <span>Completed</span>
+                                                    </div>
+                                                </div>
+                                                <div class="item-col item-col-header item-col-stats">
+                                                    <div class="no-overflow">
+                                                        <span>Stats</span>
+                                                    </div>
+                                                </div>
+                                                <div class="item-col item-col-header item-col-date">
+                                                    <div>
+                                                        <span>Date Completed</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {{#each courses as |course|}}
+                                            {{!-- TODO: COURSE LIST ITEMS --}}
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="card sameheight-item sales-breakdown" data-exclude="xs,sm,lg" style="height: 400px;">
+                                    <div class="card-header">
+                                        <div class="header-block">
+                                            <h3 class="title"> Top Skills </h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="dashboard-sales-breakdown-chart" id="dashboard-sales-breakdown-chart"><svg height="342" version="1.1" width="250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.166626px;"><desc>Created with Raphaël 2.2.0</desc><defs></defs><path style="opacity: 1;" fill="none" stroke="#9ed85f" d="M125,201.66666666666669A76.66666666666667,76.66666666666667,0,0,0,197.59407492337823,149.65518330486972" stroke-width="2" opacity="1"></path><path style="" fill="#9ed85f" stroke="#ffffff" d="M125,204.66666666666669A79.66666666666667,79.66666666666667,0,0,0,200.4347126377713,150.61995134723418L233.89111238506734,161.98277495730457A115,115,0,0,1,125,240Z" stroke-width="3"></path><path style="opacity: 0;" fill="none" stroke="#70b02b" d="M197.59407492337823,149.65518330486972A76.66666666666667,76.66666666666667,0,0,0,56.24672005251155,91.0770833470932" stroke-width="2" opacity="0"></path><path style="" fill="#70b02b" stroke="#ffffff" d="M200.4347126377713,150.61995134723418A79.66666666666667,79.66666666666667,0,0,0,53.55637431543592,89.74966486937075L26.35398964056006,76.32798915017719A110,110,0,0,1,229.15671619441224,160.37482822003045Z" stroke-width="3"></path><path style="opacity: 0;" fill="none" stroke="#85ce36" d="M56.24672005251155,91.0770833470932A76.66666666666667,76.66666666666667,0,0,0,124.97591445671868,201.66666288331834" stroke-width="2" opacity="0"></path><path style="" fill="#85ce36" stroke="#ffffff" d="M53.55637431543592,89.74966486937075A79.66666666666667,79.66666666666667,0,0,0,124.9749719789381,204.6666627352743L124.96544248137897,234.99999457171762A110,110,0,0,1,26.35398964056006,76.32798915017719Z" stroke-width="3"></path><text style="text-anchor: middle; font-family: &quot;Arial&quot;; font-size: 15px; font-weight: 800;" x="125" y="115" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="15px" stroke="none" fill="#000000" font-weight="800" transform="matrix(1.189,0,0,1.189,-23.6215,-23.3853)" stroke-width="0.8410627945609714"><tspan dy="5.25">JAVA</tspan></text><text style="text-anchor: middle; font-family: &quot;Arial&quot;; font-size: 14px;" x="125" y="135" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="#000000" transform="matrix(1.5972,0,0,1.5972,-74.6528,-75.8472)" stroke-width="0.6260869565217391"><tspan dy="5">12</tspan></text></svg></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section map-tasks">
+                        <div class="row sameheight-container">
+                            <div class="col-md-8">
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+                    </section>
+                </article>
+                {{!-- <footer class="footer">
+                    <div class="footer-block buttons">
+                    </div>
+                    <div class="footer-block author">
+                        <ul>
+                            <li> created by
+                                <a href="https://github.com/modularcode">ModularCode</a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/modularcode/modular-admin-html#get-in-touch">get in touch</a>
+                            </li>
+                        </ul>
+                    </div>
+                </footer> --}}
+                <div class="modal fade" id="modal-media">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Media Library</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                            </div>
+                            <div class="modal-body modal-tab-container">
+                                <ul class="nav nav-tabs modal-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#gallery" data-toggle="tab" role="tab">Gallery</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#upload" data-toggle="tab" role="tab">Upload</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content modal-tab-content">
+                                    <div class="tab-pane fade" id="gallery" role="tabpanel">
+                                        <div class="images-container">
+                                            <div class="row"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade active in" id="upload" role="tabpanel">
+                                        <div class="upload-container">
+                                            <div id="dropzone">
+                                                <form action="/" method="POST" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" id="demo-upload">
+                                                    <div class="dz-message-block">
+                                                        <div class="dz-message needsclick"> Drop files here or click to upload. </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Insert Selected</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <div class="modal fade" id="confirm-modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    <i class="fa fa-warning"></i> Alert</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure want to do this?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </div>
+        </div>
+        <!-- Reference block for JS -->
+        <div class="ref" id="ref">
+            <div class="color-primary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
+            </div>
+        </div>
+        <script src="/js/vendor.js"></script>
+        <script src="/js/app.js"></script>
+        <div class="responsive-bootstrap-toolkit">
+            <div class="device-xs hidden-sm-up"></div>
+            <div class="device-sm hidden-xs-down hidden-md-up"></div>
+            <div class="device-md hidden-sm-down hidden-lg-up"></div>
+            <div class="device-lg hidden-md-down hidden-xl-up"></div>
+            <div class="device-xl hidden-lg-down"></div>
+        </div>
+        <div class="jqvmap-label" style="display: none;"></div>
+        <input multiple="multiple" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;" type="file">
+        <div class="jqvmap-label" style="display: none;"></div>
+</body>
+</html>

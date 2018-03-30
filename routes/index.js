@@ -3,12 +3,17 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-res.render('index', { title: 'User Sign In', condition: true, user: ["userA", "userB", "userC", "userD"]});
+    const title = 'User Sign-In';
+    const users = [
+        {id:1,name:"userA"},
+        {id:2,name:"userB"},
+        {id:3,name:"userC"},
+        {id:4,name:"userD"}
+    ];
+    res.render('index', {
+        title,
+        users
+    });
 });
-
-router.get('/users/:uid', function(req, res, next) {
- res.render('index')  
-});
-
 
 module.exports = router;

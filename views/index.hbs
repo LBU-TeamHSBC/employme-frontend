@@ -1,6 +1,4 @@
 <h1> {{ title }} </h1>
-<p>Welcome to {{ title }}</p>
-
-{{# each user }}
-<a href={{ this }}>{{ this }}</a>
+{{#each users as |user| }}
+    <a href="/users/{{ user.id }}">{{ user.name }}</a><br>
 {{/each}}
