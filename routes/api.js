@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const { OAuth2Client } = require('google-auth-library');
 
 const CLIENT_ID = "GOOGLE_CLIENT_ID";
-
-const {OAuth2Client} = require('google-auth-library');
 
 const verifyIdToken = (token) => {
   return new Promise((resolve, reject) => {
@@ -36,6 +35,16 @@ router.post('/login', function(req, res, next) {
       }
     }))
     .catch(err => res.json({ err: true }));
+});
+
+router.get('/vendors', (req, res) => {
+  const VENDOR_SQL = "SELECT id, name, oauth_url, category FROM vendor ORDER BY name";
+  // const cur = db.cursor();
+  // cur.execute(VENDOR_SQL).then();
+  res.json([
+    {id:1, name:'GitHub', oauth_url:'https://', category:'PROJECT'},
+    {id:4, name:'Leeds Beckett University', oauth_url:'https://', category:'COURSE'}
+  ]);
 });
 
 module.exports = router;
