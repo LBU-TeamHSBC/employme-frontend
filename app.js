@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var hbs =require('express-handlebars');
 
+var api = require('./routes/api');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -25,12 +26,19 @@ app.set('view engine', 'hbs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
